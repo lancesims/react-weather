@@ -1,5 +1,5 @@
+var _ = require('lodash');
 // var express = require('express');
-// var _ = require('lodash');
 //
 // var app = express();
 // const PORT = process.env.PORT || 3000;
@@ -27,8 +27,8 @@ var express = require('express');
 var app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  if (_.isUndefined(req.headers['x-forwarded-proto'] || req.headers['x-forwarded-proto'] === 'http') {
+app.use(function (req, res, next){
+  if (_.isUndefined(req.headers['x-forwarded-proto']) || req.headers['x-forwarded-proto'] === 'http') {
     next();
   } else {
     res.redirect('http://' + req.hostname + req.url);
